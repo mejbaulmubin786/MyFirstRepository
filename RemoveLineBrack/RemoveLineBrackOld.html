@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text Replacement Example</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Text Replacement Application</h1>
+    </header>
+    <div class="container">
+      <form id="textForm">
+        <label for="userInput">Enter Text:</label><br />
+        <textarea
+          id="userInput"
+          name="userInput"
+          placeholder="Type your text here..."
+        ></textarea
+        ><br />
+        <button type="button" id="replaceButton">Replace Line Breaks</button>
+      </form>
+    </div>
+    <div class="result" id="resultContainer" style="display: none">
+      <h2>Resulting Text:</h2>
+      <textarea id="resultText" readonly></textarea>
+    </div>
+    <footer>
+      <p>
+        &copy; 2024 Mejbaul Mubin's Text Replacement Application. All rights
+        reserved.
+      </p>
+    </footer>
+
+    <script>
+      // Handle the button click event
+      document
+        .getElementById("replaceButton")
+        .addEventListener("click", function () {
+          // Get user input from the textarea
+          const userInput = document.getElementById("userInput").value;
+
+          // Replace line breaks (\n) with an empty string
+          const replacedText = userInput.replace(/(\r\n|\r|\n)/g, "");
+
+          // Display the result in the result container
+          const resultContainer = document.getElementById("resultContainer");
+          const resultText = document.getElementById("resultText");
+          resultText.value = replacedText;
+          resultContainer.style.display = "block";
+        });
+    </script>
+  </body>
+</html>

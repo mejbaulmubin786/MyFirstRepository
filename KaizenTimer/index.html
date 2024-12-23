@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customizable Kaizen Timer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="timer-container">
+        <h1>Kaizen Timer</h1>
+        <div class="timer-display" id="timer-display">00:00:00</div>
+        <div class="controls">
+            <div class="time-inputs">
+                <input type="number" id="hours" placeholder="Hours" min="0" max="23" />
+                <input type="number" id="minutes" placeholder="Minutes" min="0" max="59" />
+                <input type="number" id="seconds" placeholder="Seconds" min="0" max="59" />
+            </div>
+            <button onclick="startTimer()">Start</button>
+            <button onclick="pauseTimer()">Pause</button>
+            <button onclick="resetTimer()">Reset</button>
+        </div>
+        <div class="ringtone-controls">
+            <label for="ringtone">Select Ringtone: </label>
+            <select id="ringtone" onchange="changeRingtone()">
+                <option value="default">Default Beep</option>
+                <option value="alarm">Alarm Tone</option>
+                <option value="chime">Chime</option>
+                <option value="custom">Custom (Upload)</option>
+            </select>
+            <input type="file" id="custom-ringtone" accept="audio/*" style="display: none;" onchange="uploadRingtone(this)" />
+        </div>
+        <div class="volume-controls">
+            <label for="volume">Volume: </label>
+            <input type="range" id="volume" min="0" max="1" step="0.1" value="0.5" onchange="adjustVolume(this.value)" />
+        </div>
+        <div class="stop-alarm" style="display: none;" id="stop-alarm-container">
+            <button onclick="stopAlarm()">Stop Alarm</button>
+        </div>
+    </div>
+    <audio id="timer-sound"></audio>
+    <script src="script.js"></script>
+</body>
+</html>

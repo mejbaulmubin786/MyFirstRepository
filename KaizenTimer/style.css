@@ -1,0 +1,61 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom right, #4facfe, #00f2fe);
+    color: #fff;
+    text-align: center;
+    padding: 50px;
+}
+
+.timer-container {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    padding: 30px;
+    display: inline-block;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.timer-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.timer-display {
+    font-size: 3rem;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+.controls {
+    margin-top: 20px;
+}
+
+.time-inputs input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 100px;
+    margin: 5px;
+    text-align: center;
+}
+
+.controls button {
+    background: #00c6ff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    margin: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.controls button:hover {
+    background: #0078cc;
+}
+
+.ringtone-controls,
+.volume-controls {
+    margin-top: 20px;
+}
