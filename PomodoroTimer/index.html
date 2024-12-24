@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Pomodoro Timer</h1>
+      <div class="timer">
+        <span id="time-display">25:00</span>
+      </div>
+      <div class="controls">
+        <button id="start">Start</button>
+        <button id="pause">Pause</button>
+        <button id="reset">Reset</button>
+      </div>
+      <div class="session-info">
+        <p id="status-text">Time to Focus!</p>
+        <p>Sessions Completed: <span id="session-count">0</span></p>
+      </div>
+      <div class="settings">
+        <h2>Settings</h2>
+        <label for="work-time">Work Time (minutes):</label>
+        <input type="number" id="work-time" value="25" min="1" max="60" />
+        <label for="break-time">Break Time (minutes):</label>
+        <input type="number" id="break-time" value="5" min="1" max="15" />
+
+        <label for="focus-sound">Focus Time Sound:</label>
+        <input type="file" id="focus-sound" accept="audio/*" />
+
+        <label for="break-sound">Break Time Sound:</label>
+        <input type="file" id="break-sound" accept="audio/*" />
+
+        <button id="apply-settings">Apply</button>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
