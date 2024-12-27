@@ -27,7 +27,7 @@
       }
       button {
         display: block;
-        margin: 0 auto 20px;
+        margin: 10px auto;
         padding: 10px 20px;
         font-size: 16px;
         background-color: #007bff;
@@ -59,6 +59,7 @@
     <button onclick="removeTimeStamps()">Remove Time Stamps</button>
     <h2>Cleaned Text:</h2>
     <div class="output" id="outputText"></div>
+    <button onclick="copyToClipboard()">Copy to Clipboard</button>
 
     <script>
       function removeTimeStamps() {
@@ -76,6 +77,21 @@
 
         // Display the cleaned text
         document.getElementById("outputText").textContent = cleanedText.trim();
+      }
+
+      function copyToClipboard() {
+        // Get the output text
+        const outputText = document.getElementById("outputText").textContent;
+
+        // Copy text to clipboard
+        navigator.clipboard
+          .writeText(outputText)
+          .then(() => {
+            alert("Text copied to clipboard!");
+          })
+          .catch((err) => {
+            console.error("Error copying text: ", err);
+          });
       }
     </script>
   </body>
