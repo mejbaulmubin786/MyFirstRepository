@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Remove Time Stamps</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <h1>Remove Time Stamps</h1>
+    <textarea
+      id="inputText"
+      placeholder="Paste your text with time stamps here..."
+    ></textarea>
+    <button onclick="removeTimeStamps()">Remove Time Stamps</button>
+    <h2>Cleaned Text:</h2>
+    <div class="output" id="outputText"></div>
+
+    <script>
+      function removeTimeStamps() {
+        // Fetch input text
+        const inputText = document.getElementById("inputText").value;
+
+        // Regular expression to match time stamps
+        const timeStampPattern =
+          /\d{4}:\d{2}:\d{2},\d{3} --> \d{2}:\d{2}:\d{2},\d{3}/g;
+
+        // Replace matched time stamps with empty string
+        const cleanedText = inputText
+          .replace(timeStampPattern, "")
+          .replace(/\n\s*\n/g, "\n");
+
+        // Display the cleaned text
+        document.getElementById("outputText").textContent = cleanedText.trim();
+      }
+    </script>
+  </body>
+</html>
