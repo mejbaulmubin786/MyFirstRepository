@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Remove Time Stamps and Line Breaks</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+      h1 {
+        text-align: center;
+        color: #444;
+      }
+      textarea {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 20px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      button {
+        display: block;
+        margin: 10px auto;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      .output {
+        background-color: #fff;
+        padding: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Remove Line Breaks and Time Stamps</h1>
+    <textarea
+      id="inputText"
+      placeholder="Paste your text with line breaks and time stamps here..."
+    ></textarea>
+    <button onclick="processText()">Process Text</button>
+    <h2>Cleaned Text:</h2>
+    <div class="output" id="outputText"></div>
+    <button onclick="copyToClipboard()">Copy to Clipboard</button>
+
+    <script>
+      function processText() {
+        // Fetch input text
+        let inputText = document.getElementById("inputText").value;
+
+        // Step 1: Remove all line breaks
+        const noLineBreaks = inputText.replace(/(\r\n|\r|\n)/g, "");
+
+        // Step 2: Remove all time stamps
+        const timeStampPattern =
+          /\d{1,4}:\d{2}:\d{2},\d{3} --> \d{1,4}:\d{2}:\d{2},\d{3}/g;
+        const cleanedText = noLineBreaks
+          .replace(timeStampPattern, "")
+          .replace(/\s{2,}/g, " ");
+
+        // Display the cleaned text
+        document.getElementById("outputText").textContent = cleanedText.trim();
+      }
+
+      function copyToClipboard() {
+        // Get the output text
+        const outputText = document.getElementById("outputText").textContent;
+
+        // Copy text to clipboard
+        navigator.clipboard
+          .writeText(outputText)
+          .then(() => {
+            alert("Text copied to clipboard!");
+          })
+          .catch((err) => {
+            console.error("Error copying text: ", err);
+          });
+      }
+    </script>
+  </body>
+</html>
