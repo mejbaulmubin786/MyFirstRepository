@@ -4,7 +4,51 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Remove Time Stamps</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+      h1 {
+        text-align: center;
+        color: #444;
+      }
+      textarea {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 20px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      button {
+        display: block;
+        margin: 0 auto 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      .output {
+        background-color: #fff;
+        padding: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        white-space: pre-wrap;
+      }
+    </style>
   </head>
   <body>
     <h1>Remove Time Stamps</h1>
@@ -21,9 +65,9 @@
         // Fetch input text
         const inputText = document.getElementById("inputText").value;
 
-        // Regular expression to match time stamps
+        // Regular expression to match various time stamp formats
         const timeStampPattern =
-          /\d{4}:\d{2}:\d{2},\d{3} --> \d{2}:\d{2}:\d{2},\d{3}/g;
+          /\d{1,4}:\d{2}:\d{2},\d{3} --> \d{1,4}:\d{2}:\d{2},\d{3}/g;
 
         // Replace matched time stamps with empty string
         const cleanedText = inputText
