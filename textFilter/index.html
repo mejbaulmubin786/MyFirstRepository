@@ -1,19 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Remove Numbers and Symbols</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text Replacement</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Text Replacement Application</h1>
+    </header>
     <div class="container">
-        <h1>Text Filter</h1>
-        <textarea id="inputText" placeholder="Enter your text here..."></textarea>
-        <button id="filterButton">Filter Text</button>
-        <h3>Filtered Text:</h3>
-        <textarea id="outputText" readonly></textarea>
+      <form id="textForm">
+        <label for="userInput">Enter Text:</label><br />
+        <textarea
+          id="userInput"
+          name="userInput"
+          placeholder="Type your text here..."
+        ></textarea
+        ><br />
+        <button type="button" id="replaceButton">
+          Replace Non-English Characters
+        </button>
+      </form>
     </div>
+    <div class="result" id="resultContainer" style="display: none">
+      <h2>Resulting Text:</h2>
+      <textarea id="outputText" readonly></textarea><br />
+      <button type="button" id="copyButton">Copy Text</button>
+    </div>
+    <footer>
+      <p>
+        &copy; 2024 Mejbaul Mubin's Text Replacement Application. All rights
+        reserved.
+      </p>
+    </footer>
+
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
