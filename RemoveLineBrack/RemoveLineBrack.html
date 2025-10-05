@@ -58,7 +58,7 @@
         .addEventListener("click", function () {
           const resultText = document.getElementById("resultText");
           resultText.select();
-          resultText.setSelectionRange(0, 99999); // For mobile devices
+          resultText.setSelectionRange(0, 9999999); // For mobile devices
 
           try {
             const successful = document.execCommand("copy");

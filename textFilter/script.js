@@ -19,7 +19,7 @@ document.getElementById("copyButton").addEventListener("click", function () {
 
   // Select the text and copy it to clipboard
   outputText.select();
-  outputText.setSelectionRange(0, 99999); // For mobile compatibility
+  outputText.setSelectionRange(0, 9999999); // For mobile compatibility
   document.execCommand("copy");
 
   // Alert user about successful copy
