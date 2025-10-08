@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ফাইল মার্জার টুল</title>
+<style>
+  body {
+    font-family: "Segoe UI", sans-serif;
+    background: #f2f6fa;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  .container {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    max-width: 450px;
+    text-align: center;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #0056b3;
+  }
+
+  input[type="file"] {
+    margin: 15px 0;
+  }
+
+  button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  button:hover {
+    background: #0056b3;
+  }
+
+  .output {
+    margin-top: 20px;
+    word-wrap: break-word;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>ফাইল মার্জার টুল</h1>
+    <p>একাধিক .txt বা .srt ফাইল বেছে নিন এবং একত্র করুন</p>
+    <input type="file" id="fileInput" multiple accept=".txt,.srt">
+    <br>
+    <button id="mergeBtn">একত্র করুন ও ডাউনলোড করুন</button>
+    <div class="output" id="output"></div>
+  </div>
+
+  <script>
+    document.getElementById("mergeBtn").addEventListener("click", async () => {
+      const files = document.getElementById("fileInput").files;
+      if (files.length === 0) {
+        alert("দয়া করে অন্তত একটি ফাইল নির্বাচন করুন!");
+        return;
+      }
+
+      let mergedText = "";
+
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const text = await file.text();
+        mergedText += `\n\n=== ${file.name} ===\n` + text;
+      }
+
+      const blob = new Blob([mergedText], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "merged_file.txt";
+      a.click();
+      URL.revokeObjectURL(url);
+
+      document.getElementById("output").innerText = "✅ ফাইল সফলভাবে একত্রিত হয়েছে এবং ডাউনলোড শুরু হয়েছে!";
+    });
+  </script>
+</body>
+</html>
