@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Remove Time Stamps and Subtitle Numbers</title>
+    <title>Remove Time Stamps and Line Breaks</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -51,10 +51,10 @@
     </style>
   </head>
   <body>
-    <h1>Remove Timestamps and Subtitle Numbers</h1>
+    <h1>Remove Line Breaks and Time Stamps</h1>
     <textarea
       id="inputText"
-      placeholder="Paste your subtitle text here..."
+      placeholder="Paste your text with line breaks and time stamps here..."
     ></textarea>
     <button onclick="processText()">Process Text</button>
     <h2>Cleaned Text:</h2>
@@ -63,29 +63,28 @@
 
     <script>
       function processText() {
+        // Fetch input text
         let inputText = document.getElementById("inputText").value;
 
-        // Step 1: Remove lines that only contain numbers (subtitle sequence numbers)
-        let cleanedText = inputText.replace(/^\d+\s*$/gm, "");
+        // Step 1: Remove all line breaks
+        const noLineBreaks = inputText.replace(/(\r\n|\r|\n)/g, " ");
 
-        // Step 2: Remove timestamp lines (e.g., 00:00:00,000 --> 00:00:03,410)
-        cleanedText = cleanedText.replace(
-          /\d{1,2}:\d{2}:\d{2},\d{3}\s-->\s\d{1,2}:\d{2}:\d{2},\d{3}/gm,
-          ""
-        );
+        // Step 2: Remove all time stamps
+        const timeStampPattern =
+          /\d{1,4}:\d{2}:\d{2},\d{3} --> \d{1,4}:\d{2}:\d{2},\d{3}/g;
+        const cleanedText = noLineBreaks
+          .replace(timeStampPattern, "")
+          .replace(/\s{2,}/g, " ");
 
-        // Step 3: Remove extra blank lines and unnecessary spaces
-        cleanedText = cleanedText
-          .split("\n")
-          .map((line) => line.trim())
-          .filter((line) => line.length > 0)
-          .join(" ");
-
+        // Display the cleaned text
         document.getElementById("outputText").textContent = cleanedText.trim();
       }
 
       function copyToClipboard() {
+        // Get the output text
         const outputText = document.getElementById("outputText").textContent;
+
+        // Copy text to clipboard
         navigator.clipboard
           .writeText(outputText)
           .then(() => {
