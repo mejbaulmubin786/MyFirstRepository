@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Text Break Processor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #0f172a, #1e2746);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    textarea {
+      width: 80%;
+      height: 150px;
+      margin-bottom: 15px;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      resize: vertical;
+    }
+    button {
+      background-color: #16a34a;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 5px;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background-color: #15803d;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Text Break Processor</h1>
+
+  <textarea id="inputText" placeholder="আপনার টেক্সট এখানে লিখুন..."></textarea>
+
+  <div class="btn-group">
+    <button onclick="processText()">Process Text</button>
+    <button onclick="copyOutput()">Copy Output</button>
+  </div>
+
+  <textarea id="outputText" placeholder="ফাইনাল টেক্সট এখানে দেখাবে..." readonly></textarea>
+
+  <script>
+    function processText() {
+      let text = document.getElementById("inputText").value;
+
+      // প্রথমে === কে দুইটি লাইন ব্রেক + ## + স্পেস এ পরিবর্তন করা
+      text = text.replace(/===/g, "\r\n\r\n## ");
+
+      // তারপর == কে একটি লাইন ব্রেকে পরিবর্তন করা
+      text = text.replace(/==/g, "\r\n");
+
+      document.getElementById("outputText").value = text;
+    }
+
+    function copyOutput() {
+      const output = document.getElementById("outputText");
+      output.select();
+      document.execCommand("copy");
+
+      // কপি হলে ভিজ্যুয়াল ফিডব্যাক
+      const original = event.target.innerText;
+      event.target.innerText = "Copied!";
+      setTimeout(() => (event.target.innerText = original), 1000);
+    }
+  </script>
+</body>
+</html>
